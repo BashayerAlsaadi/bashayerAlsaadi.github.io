@@ -11,10 +11,11 @@
   html{scroll-behavior:smooth}
   body{font-family:Inter,Tajawal,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
   html[dir=rtl] body{font-family:Tajawal,Inter,sans-serif}
-  nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:rgba(13,20,25,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  nav .links a{color:var(--muted);text-decoration:none;margin-inline-end:18px;font-size:15px}
+  nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 20px;background:rgba(13,20,25,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .links{display:flex;flex-wrap:wrap;gap:4px 16px}
+  nav .links a{color:var(--muted);text-decoration:none;font-size:15px}
   nav .links a:hover{color:var(--accent)}
-  #lang{background:none;border:1px solid var(--accent);color:var(--text);border-radius:999px;padding:6px 16px;cursor:pointer;box-shadow:0 0 12px rgba(95,216,238,.3)}
+  #lang{flex-shrink:0;background:none;border:1px solid var(--accent);color:var(--text);border-radius:999px;padding:6px 16px;cursor:pointer;box-shadow:0 0 12px rgba(95,216,238,.3)}
   section{max-width:900px;margin:0 auto;padding:60px 20px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;margin-bottom:22px}
   .hero{text-align:center;padding-top:40px}
@@ -23,18 +24,33 @@
   @keyframes grow{from{height:0}}
   h1{font-size:clamp(34px,8vw,56px);font-weight:800;line-height:1.15}
   .role{color:var(--accent);font-size:22px;font-weight:700;margin:8px 0 14px}
-  .sub{color:var(--muted);max-width:560px;margin:0 auto 26px}
+  .sub{color:var(--muted);max-width:600px;margin:0 auto 26px}
   .btn{display:inline-block;border:1px solid var(--accent);color:var(--accent);padding:10px 26px;border-radius:999px;text-decoration:none;font-weight:600}
   .btn:hover{background:var(--accent);color:var(--bg)}
   h2{font-size:32px;margin-bottom:22px}
-  h3{font-size:20px;margin-bottom:10px}
+  h3{font-size:20px;margin-bottom:6px}
   p,li{color:var(--muted)}
+  .meta{color:var(--accent);font-weight:600;margin-bottom:12px}
   .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
   .chip{border:1px solid var(--line);background:#1b2b33;border-radius:999px;padding:8px 18px;color:var(--text);font-size:15px}
-  .project .thumb{height:180px;border-radius:16px;margin:-8px -8px 20px;background:linear-gradient(135deg,#1c3a46,#0f2027);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;overflow:hidden}
-  .project .thumb img{width:100%;height:100%;object-fit:cover}
-  .project ul{padding-inline-start:20px;margin-bottom:16px}
-  .tools{color:var(--text);font-weight:600;margin-bottom:12px}
+  .card ul{padding-inline-start:20px}
+  .project .thumb{height:200px;border-radius:16px;margin:-8px -8px 20px;background:linear-gradient(135deg,#1c3a46,#0f2027);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;overflow:hidden}
+  .project .thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .project ul{margin-bottom:16px}
+  .tools{color:var(--text);font-weight:600}
+  .item+.item{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  .gallery{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:-8px -8px 20px;padding-bottom:6px}
+  .gallery a{flex:0 0 78%;max-width:420px;scroll-snap-align:start}
+  .gallery img{width:100%;height:260px;object-fit:cover;border-radius:14px;display:block}
+  .gallery::-webkit-scrollbar{height:6px}.gallery::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
+  .gallery.diagrams a{flex-basis:92%;max-width:640px}
+  .gallery.diagrams img{object-fit:contain;background:#fff}
+  .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:12px}
+  .cert{display:flex;flex-direction:column;gap:4px;text-decoration:none;background:#1b2b33;border:1px solid var(--line);border-radius:16px;padding:12px;transition:.2s}
+  .cert:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .cert img{width:100%;border-radius:10px;margin-bottom:8px}
+  .cert strong{color:var(--text);font-size:15px}
+  .cert span{color:var(--muted);font-size:13px}
   .contact a{color:var(--accent);text-decoration:none}
   footer{text-align:center;color:var(--muted);padding:30px;font-size:14px;border-top:1px solid var(--line)}
 </style>
@@ -45,6 +61,8 @@
   <div class="links">
     <a href="#home" data-i="navHome">Home</a>
     <a href="#about" data-i="navAbout">About</a>
+    <a href="#experience" data-i="navExp">Experience</a>
+    <a href="#work" data-i="navWork">What I Do</a>
     <a href="#projects" data-i="navProjects">Projects</a>
     <a href="#contact" data-i="navContact">Contact</a>
   </div>
@@ -54,8 +72,8 @@
 <section id="home" class="hero">
   <div class="chart"><span style="height:45%"></span><span style="height:65%"></span><span style="height:90%"></span><span style="height:58%"></span><span style="height:78%"></span></div>
   <h1 data-i="name">Hello, I'm Bashayer Alsaadi</h1>
-  <div class="role" data-i="role">Customer Experience Specialist | Data Analyst</div>
-  <p class="sub" data-i="tagline">I turn customer data into clear insights, and insights into practical solutions that improve the customer journey.</p>
+  <div class="role" data-i="role">Customer Experience Specialist</div>
+  <p class="sub" data-i="tagline">I map customer journeys, design and analyze surveys, and turn data into clear insights and recommendations that improve the customer experience.</p>
   <a class="btn" href="CV.pdf" download data-i="cv">Download CV</a>
 </section>
 
@@ -63,56 +81,179 @@
   <h2 data-i="aboutTitle">About Me</h2>
   <div class="card">
     <h3 data-i="summaryTitle">Professional Summary</h3>
-    <p data-i="summary">Customer Experience Specialist in banking. I build dashboards, analyze NPS, CSAT and CES results, and work closely with business teams to turn customer insights into ideas that get implemented.</p>
+    <p data-i="summary">Customer Experience Specialist specializing in customer journey mapping, survey design and analysis, data storytelling and customer insights. Skilled in identifying customer pain points and improvement opportunities, transforming data into actionable insights, and delivering clear recommendations that enhance customer experience.</p>
+  </div>
+  <div class="card">
+    <h3 data-i="eduTitle">Education</h3>
+    <p style="color:var(--text);font-weight:600" data-i="edu1">Bachelor of Social Sciences</p>
+    <p class="meta">2019 – 2023</p>
+    <p data-i="edu2">Princess Nourah Bint Abdulrahman University · GPA 4.37</p>
   </div>
   <div class="card">
     <h3 data-i="skillsTitle">Skills</h3>
     <div class="chips">
-      <span class="chip" data-i="s1">Data Analysis</span>
-      <span class="chip" data-i="s2">Dashboard Design</span>
-      <span class="chip" data-i="s3">Customer Journey Mapping</span>
-      <span class="chip" data-i="s4">NPS / CSAT / CES</span>
-      <span class="chip" data-i="s5">Reporting</span>
-      <span class="chip">Excel</span>
+      <span class="chip" data-i="s1">Customer Journey Mapping</span>
+      <span class="chip" data-i="s2">Voice of Customer (VoC)</span>
+      <span class="chip" data-i="s3">Survey Design & Analysis</span>
+      <span class="chip" data-i="s4">Data Visualization & Business Insights</span>
+      <span class="chip" data-i="s5">Reporting & Data Storytelling</span>
+      <span class="chip" data-i="s6">Benchmarking</span>
+      <span class="chip" data-i="s7">Creative Thinking</span>
+      <span class="chip" data-i="s8">UI Design</span>
+    </div>
+    <h3 style="margin-top:22px" data-i="toolsTitle">Tools</h3>
+    <div class="chips">
       <span class="chip">Power BI</span>
+      <span class="chip">Excel</span>
+      <span class="chip">Microsoft Office (Advanced)</span>
+      <span class="chip">Figma</span>
+      <span class="chip" data-i="t1">Customer Survey Platforms</span>
     </div>
   </div>
   <div class="card">
-    <h3 data-i="certTitle">Certifications</h3>
-    <p data-i="cert1">Add your certificate here</p>
+    <h3 data-i="certTitle">Certifications & Courses</h3>
+    <div class="certs">
+      <a class="cert" href="cert-bida.pdf" target="_blank">
+        <img src="cert-bida.jpg" alt="BIDA certificate">
+        <strong>Business Intelligence & Data Analyst (BIDA)</strong>
+        <span>Corporate Finance Institute (CFI) · Nov 2026</span>
+      </a>
+      <a class="cert" href="cert-ai.pdf" target="_blank">
+        <img src="cert-ai.jpg" alt="AI for Finance certificate">
+        <strong>AI for Finance Workflows & Governance</strong>
+        <span>Corporate Finance Institute (CFI) · Aug 2026</span>
+      </a>
+      <a class="cert" href="cert-data.pdf" target="_blank">
+        <img src="cert-data.jpg" alt="Data Analysis and Reporting certificate">
+        <strong>Data Analysis & Reporting Program</strong>
+        <span>AlTawail Consulting & Training · Sep 2025</span>
+      </a>
+    </div>
   </div>
+</section>
+
+<section id="experience">
+  <h2 data-i="expTitle">Experience</h2>
+  <div class="card">
+    <h3 data-i="j1t">Customer Experience Specialist</h3>
+    <p class="meta" data-i="j1m">Banque Saudi Fransi (BSF) · Mar 2026 – Present</p>
+    <ul>
+      <li data-i="j1a">Led the planning and execution of the bank's CX Day, from concept to on-site delivery</li>
+      <li data-i="j1b">Designed the bank's AI Agent Persona to support journey design and customer-centric decisions</li>
+      <li data-i="j1c">Led the Moments of Truth (MoT) initiative with personalized, event-triggered communications</li>
+      <li data-i="j1d">Led the redesign and launch of external customer email templates</li>
+      <li data-i="j1e">Built dashboards and presented insights using data storytelling</li>
+      <li data-i="j1f">Optimized journeys across branch and digital channels with implementation-ready To-Be designs</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 data-i="j2t">Senior Analyst & CX Innovation</h3>
+    <p class="meta" data-i="j2m">Emkan Finance Company (Alrajhi Group) · Dec 2023 – Apr 2026</p>
+    <ul>
+      <li data-i="j2a">Designed and optimized backend customer journeys to improve efficiency and experience</li>
+      <li data-i="j2b">Led the launch of the in-app customer survey</li>
+      <li data-i="j2c">Streamlined the digital application journey by reducing the number of clicks</li>
+      <li data-i="j2d">Managed the full survey lifecycle, from design and launch to analysis and insights</li>
+      <li data-i="j2e">Prepared VoC reports and analyzed customer feedback to find trends and opportunities</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 data-i="j3t">Tamheer Trainee</h3>
+    <p class="meta" data-i="j3m">Emkan Finance Company · 6 months</p>
+  </div>
+</section>
+
+<section id="work">
+  <h2 data-i="workTitle">What I Do</h2>
+  <div class="card project">
+    <div class="gallery diagrams">
+      <a href="cx-dashboard.jpg" target="_blank"><img src="cx-dashboard.jpg" alt="Customer Experience Dashboard"></a>
+    </div>
+    <h3 data-i="p1t">Customer Experience Insights Dashboard</h3>
+    <p class="meta" data-i="p1m">NPS · CSAT · CES</p>
+    <p style="margin-bottom:12px" data-i="p1d">I design dashboards that turn customer feedback into clear insights, helping teams quickly see what changed, where, and what needs attention.</p>
+    <ul>
+      <li data-i="p1a">Tracked NPS, CSAT and CES against the previous quarter to highlight changes in customer experience</li>
+      <li data-i="p1b">Broke results down by month, region, channel and customer segment to find where performance drops</li>
+      <li data-i="p1c">Wrote key insights next to the visuals, so leaders get the story behind the numbers at a glance</li>
+      <li data-i="p1e">Considered sample size when reading results, to make sure recommendations are based on reliable data</li>
+    </ul>
+    <div class="tools" data-i="p1tools">Excel · Power BI · Data Storytelling</div>
+  </div>
+
+  <div class="card project">
+    <div class="gallery diagrams">
+      <a href="ui-booking.jpg" target="_blank"><img src="ui-booking.jpg" alt="Branch appointment booking app concept"></a>
+    </div>
+    <h3 data-i="p5t">App UI Concepts for CX Improvements</h3>
+    <p class="meta" data-i="p5m">Example: Branch Appointment Booking</p>
+    <p style="margin-bottom:12px" data-i="p5d">I design early-stage app screens to bring improvement ideas to life, helping stakeholders see the proposed experience clearly before development starts.</p>
+    <ul>
+      <li data-i="p5a">Turned customer pain points into clear, visual concepts that business and digital teams can discuss and align on quickly</li>
+      <li data-i="p5b">Designed a branch appointment booking flow: choose a service, pick a branch, select a time and confirm</li>
+      <li data-i="p5c">Added live wait times and branch crowd levels so customers can choose the branch with the shortest wait</li>
+      <li data-i="p5e">Included pre-visit document checklists and appointment reminders to make branch visits faster and easier</li>
+    </ul>
+    <div class="tools" data-i="p5tools">Figma · UI Design · Prototyping</div>
+  </div>
+
 </section>
 
 <section id="projects">
   <h2 data-i="projTitle">Projects</h2>
 
-  <div class="card project">
-    <div class="thumb">project1.png</div>
-    <h3 data-i="p1t">Customer Experience Dashboard</h3>
+  <div class="card project featured">
+    <div class="gallery">
+      <a href="cxday-1.jpg" target="_blank"><img src="cxday-1.jpg" alt="CX Day main stand"></a>
+      <a href="cxday-2.jpg" target="_blank"><img src="cxday-2.jpg" alt="CX Day puzzle invitation and stations"></a>
+      <a href="cxday-3.jpg" target="_blank"><img src="cxday-3.jpg" alt="CX Day slogan on screens"></a>
+      <a href="cxday-4.jpg" target="_blank"><img src="cxday-4.jpg" alt="CX Day keychains"></a>
+      <a href="cxday-5.jpg" target="_blank"><img src="cxday-5.jpg" alt="CX Day message on office phones"></a>
+      <a href="cxday-6.jpg" target="_blank"><img src="cxday-6.jpg" alt="Documentary filming"></a>
+    </div>
+    <h3 data-i="p0t">CX Day 2026 | Every Voice Heard… Experience Shaped</h3>
+    <p class="meta" data-i="p0m">Banque Saudi Fransi (BSF) · October 2026</p>
+    <p style="margin-bottom:12px" data-i="p0d">The bank-wide celebration of Customer Experience Day, designed to show every employee how their role shapes the customer's experience.</p>
     <ul>
-      <li data-i="p1a">Tracked NPS, CSAT and CES across products using sample data</li>
-      <li data-i="p1b">Highlighted the products with the lowest scores and the main pain points</li>
-      <li data-i="p1c">Turned the findings into clear recommendations</li>
+      <li data-i="p0a">Developed the creative concept, key messages and the campaign slogan "Every Voice Heard… Experience Shaped"</li>
+      <li data-i="p0b">Created the content for the event's interactive stations and digital screens, showing how each business unit contributes to the customer experience</li>
+      <li data-i="p0c">Supervised the production of a short documentary in which BSF senior leaders share how their business lines shape the customer experience</li>
+      <li data-i="p0e">The campaign gained wide reach across the bank and beyond</li>
     </ul>
-    <div class="tools">Power BI · Excel</div>
+    <div class="tools" data-i="p0tools">Concept Development · Content Creation · Internal Communications · Video Production</div>
   </div>
 
+
+
+
+
+
   <div class="card project">
-    <div class="thumb">project2.png</div>
-    <h3 data-i="p2t">Credit Card Customer Journey</h3>
+    <div class="gallery diagrams">
+      <a href="journey-1.jpg" target="_blank"><img src="journey-1.jpg" alt="Customer journey map with APIs"></a>
+      <a href="journey-2.jpg" target="_blank"><img src="journey-2.jpg" alt="Credit decision journey funnel"></a>
+    </div>
+    <h3 data-i="p4t">Backend Financing Journey Simplification</h3>
+    <p class="meta" data-i="p4m">Emkan Finance Company (Alrajhi Group)</p>
+    <p style="margin-bottom:12px" data-i="p4d">Simplified the backend financing journey by streamlining how internal systems work together, removing unnecessary steps and making the process faster for customers.</p>
     <ul>
-      <li data-i="p2a">Mapped the full journey across branch and digital channels</li>
-      <li data-i="p2b">Identified friction points and proposed improvements</li>
+      <li data-i="p4a">Analyzed the full backend journey, from application and credit decision to offering, contract signing, commodity, remittance and document custody</li>
+      <li data-i="p4b">Identified unnecessary steps and manual handoffs, and removed or automated them</li>
+      <li data-i="p4c">Connected systems through APIs so data flows automatically between stages instead of being re-entered</li>
+      <li data-i="p4e">Simplified the credit decision flow (auto-accept, auto-reject, referral, RPA and manual review) to speed up approvals</li>
+      <li data-i="p4f">Reduced processing time and created a smoother, faster journey for customers</li>
     </ul>
-    <div class="tools">Excel · Journey Mapping</div>
+    <div class="tools" data-i="p4tools">Journey Mapping · Process Design · System Integration (APIs)</div>
   </div>
 </section>
 
 <section id="contact">
   <h2 data-i="contactTitle">Contact</h2>
   <div class="card contact">
-    <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/your-link" target="_blank">linkedin.com/in/your-link</a></p>
+    <p><span data-i="cEmail">Email</span>: <a href="mailto:Bashayer.yah@hotmail.com">Bashayer.yah@hotmail.com</a></p>
+    <p><span data-i="cPhone">Phone</span>: <a href="tel:+966533111304" dir="ltr">+966 53 311 1304</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/BAlsaadi" target="_blank">linkedin.com/in/BAlsaadi</a></p>
+    <p><span data-i="cLoc">Location</span>: <span data-i="cLocV">Riyadh, Saudi Arabia</span></p>
   </div>
 </section>
 
@@ -120,16 +261,45 @@
 
 <script>
 const ar = {
-  navHome:"الرئيسية", navAbout:"عني", navProjects:"المشاريع", navContact:"تواصل",
-  name:"أهلاً، أنا بشاير السعدي", role:"أخصائية تجربة العملاء | محللة بيانات",
-  tagline:"أحوّل بيانات العملاء إلى رؤى واضحة، والرؤى إلى حلول عملية تحسّن رحلة العميل.",
+  navHome:"الرئيسية", navAbout:"عني", navExp:"الخبرات", navWork:"أعمالي", navProjects:"المشاريع", navContact:"تواصل",
+  name:"أهلاً، أنا بشاير السعدي", role:"أخصائية تجربة العملاء",
+  tagline:"أرسم رحلات العملاء، وأصمم الاستبيانات وأحللها، وأحوّل البيانات إلى رؤى وتوصيات واضحة تحسّن تجربة العميل.",
   cv:"تحميل السيرة الذاتية", aboutTitle:"عني", summaryTitle:"نبذة مهنية",
-  summary:"أخصائية تجربة عملاء في القطاع البنكي. أبني الداشبوردات، وأحلل نتائج NPS وCSAT وCES، وأعمل مع فرق الأعمال لتحويل رؤى العملاء إلى أفكار تُطبَّق.",
-  skillsTitle:"المهارات", s1:"تحليل البيانات", s2:"تصميم الداشبوردات", s3:"رسم رحلة العميل", s4:"NPS / CSAT / CES", s5:"إعداد التقارير",
-  certTitle:"الشهادات", cert1:"أضيفي شهادتك هنا", projTitle:"المشاريع",
-  p1t:"داشبورد تجربة العملاء", p1a:"تتبّع مؤشرات NPS وCSAT وCES لكل منتج باستخدام بيانات تجريبية", p1b:"إبراز المنتجات الأقل تقييماً وأهم نقاط الألم", p1c:"تحويل النتائج إلى توصيات واضحة",
-  p2t:"رحلة عميل البطاقات الائتمانية", p2a:"رسم الرحلة كاملة في الفرع والقنوات الرقمية", p2b:"تحديد نقاط الاحتكاك واقتراح تحسينات",
-  contactTitle:"تواصل"
+  summary:"أخصائية تجربة عملاء متخصصة في رسم رحلة العميل، وتصميم الاستبيانات وتحليلها، وسرد البيانات، ورؤى العملاء. أحدد نقاط الألم وفرص التحسين، وأحوّل البيانات إلى رؤى قابلة للتنفيذ، وأقدم توصيات واضحة ترفع مستوى تجربة العميل.",
+  eduTitle:"التعليم", edu1:"بكالوريوس العلوم الاجتماعية", edu2:"جامعة الأميرة نورة بنت عبدالرحمن · المعدل 4.37",
+  skillsTitle:"المهارات", s1:"رسم رحلة العميل", s2:"صوت العميل (VoC)", s3:"تصميم الاستبيانات وتحليلها", s4:"تصوير البيانات ورؤى الأعمال", s5:"التقارير وسرد البيانات", s6:"المقارنة المرجعية", s7:"التفكير الإبداعي", s8:"تصميم الواجهات",
+  toolsTitle:"الأدوات", t1:"منصات استبيانات العملاء",
+  certTitle:"الشهادات والدورات",
+  expTitle:"الخبرات",
+  j1t:"أخصائية تجربة العملاء", j1m:"البنك السعودي الفرنسي · مارس 2026 – حتى الآن",
+  j1a:"قيادة تخطيط وتنفيذ يوم تجربة العملاء في البنك، من الفكرة إلى التنفيذ في الموقع", j1b:"تصميم شخصية وكيل الذكاء الاصطناعي للبنك لدعم تصميم الرحلات والقرارات المتمحورة حول العميل", j1c:"قيادة مبادرة لحظات الحقيقة (MoT) عبر رسائل مخصصة مرتبطة بالأحداث", j1d:"قيادة إعادة تصميم وإطلاق قوالب البريد الإلكتروني الخارجية للعملاء", j1e:"بناء داشبوردات وعرض الرؤى بأسلوب سرد البيانات", j1f:"تحسين الرحلات في الفروع والقنوات الرقمية بتصاميم مستقبلية جاهزة للتنفيذ",
+  j2t:"محللة أولى وابتكار تجربة العملاء", j2m:"شركة إمكان للتمويل (مجموعة الراجحي) · ديسمبر 2023 – أبريل 2026",
+  j2a:"تصميم وتحسين الرحلات الداخلية للعملاء لرفع الكفاءة وتحسين التجربة", j2b:"قيادة إطلاق استبيان العملاء داخل التطبيق", j2c:"تبسيط رحلة التقديم الرقمية وتقليل عدد الخطوات", j2d:"إدارة دورة الاستبيان كاملة، من التصميم والإطلاق إلى التحليل واستخراج الرؤى", j2e:"إعداد تقارير صوت العميل وتحليل الملاحظات لاكتشاف التوجهات وفرص التحسين",
+  j3t:"متدربة تمهير", j3m:"شركة إمكان للتمويل · 6 أشهر",
+  projTitle:"المشاريع", workTitle:"أعمالي",
+  p0t:"اليوم العالمي لتجربة العميل 2026 | كل صوت يُسمع.. تجربة تُصنع", p0m:"البنك السعودي الفرنسي · أكتوبر 2026",
+  p0d:"فعالية على مستوى البنك للاحتفاء باليوم العالمي لتجربة العميل، صُممت لتُظهر لكل موظف كيف يصنع دوره تجربة العميل.",
+  p0a:"تطوير الفكرة الإبداعية والرسائل الرئيسية وشعار الحملة «كل صوت يُسمع.. تجربة تُصنع»",
+  p0b:"إعداد محتوى المحطات التفاعلية والشاشات الرقمية، لإبراز دور كل قطاع في تجربة العميل",
+  p0c:"الإشراف على إنتاج فيلم وثائقي قصير يتحدث فيه قادة البنك عن مساهمة قطاعاتهم في تجربة العميل",
+  p0e:"حققت الحملة انتشاراً واسعاً داخل البنك وخارجه",
+  p0tools:"تطوير المفاهيم · صناعة المحتوى · الاتصال الداخلي · الإنتاج المرئي",
+  p4t:"تبسيط رحلة التمويل في الأنظمة الداخلية", p4m:"شركة إمكان للتمويل (مجموعة الراجحي)",
+  p4d:"تبسيط رحلة التمويل الداخلية عبر تحسين طريقة عمل الأنظمة مع بعضها، وإلغاء الخطوات غير الضرورية، وتسريع الإجراءات للعميل.",
+  p4a:"تحليل الرحلة الداخلية كاملة، من تقديم الطلب والقرار الائتماني إلى العرض وتوقيع العقد والسلعة والتحويل وحفظ المستندات",
+  p4b:"تحديد الخطوات غير الضرورية والتحويلات اليدوية، وإلغاؤها أو أتمتتها",
+  p4c:"ربط الأنظمة عبر API لتنتقل البيانات تلقائياً بين المراحل بدل إعادة إدخالها",
+  p4e:"تبسيط مسار القرار الائتماني (قبول آلي، رفض آلي، إحالة، أتمتة RPA، ومراجعة يدوية) لتسريع الموافقات", p4f:"تقليل وقت المعالجة وتقديم رحلة أسرع وأسهل للعميل",
+  p4tools:"رسم الرحلات · تصميم العمليات · ربط الأنظمة (API)",
+  p5t:"تصاميم مبدئية لواجهات التطبيق لتحسين التجربة", p5m:"مثال: حجز موعد في الفرع",
+  p5d:"أصمم واجهات مبدئية للتطبيق لتوضيح أفكار التحسين، وتساعد أصحاب القرار على تصوّر التجربة المقترحة بوضوح قبل بدء التطوير.",
+  p5a:"تحويل نقاط الألم لدى العملاء إلى أفكار مرئية واضحة تسهّل النقاش والتوافق مع فرق الأعمال والقنوات الرقمية",
+  p5b:"تصميم رحلة حجز موعد في الفرع: اختيار الخدمة، ثم الفرع، ثم الوقت، وتأكيد الموعد",
+  p5c:"إضافة أوقات الانتظار ومستوى الازدحام لحظياً، ليختار العميل الفرع الأقل انتظاراً",
+  p5e:"إضافة قائمة بالمستندات المطلوبة قبل الزيارة وتذكير بالموعد لتسهيل زيارة الفرع وتسريعها",
+  p5tools:"Figma · تصميم الواجهات · النماذج الأولية",
+  p1t:"داشبورد رؤى تجربة العملاء", p1m:"NPS · CSAT · CES", p1d:"أصمم داشبوردات تحوّل ملاحظات العملاء إلى رؤى واضحة، تساعد الفرق على معرفة ما تغيّر وأين، وما يحتاج إلى اهتمام.", p1a:"تتبّع مؤشرات NPS وCSAT وCES ومقارنتها بالربع السابق لإبراز التغيّر في تجربة العميل", p1b:"تحليل النتائج حسب الشهر والمنطقة والقناة وشريحة العملاء لتحديد مواضع التراجع", p1c:"كتابة الرؤى الرئيسية بجانب الرسومات، ليفهم القادة القصة خلف الأرقام بنظرة سريعة", p1e:"مراعاة حجم العينة عند قراءة النتائج، لتكون التوصيات مبنية على بيانات موثوقة", p1tools:"Excel · Power BI · سرد البيانات",
+  contactTitle:"تواصل", cEmail:"الإيميل", cPhone:"الجوال", cLoc:"الموقع", cLocV:"الرياض، السعودية"
 };
 const en = {};
 document.querySelectorAll("[data-i]").forEach(el => en[el.dataset.i] = el.textContent);
