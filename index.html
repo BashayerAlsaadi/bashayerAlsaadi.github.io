@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bashayer Alsaadi | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0d1419;--card:#16222a;--line:#24363f;--text:#e8f4f8;--muted:#9fb3bd;--accent:#5fd8ee;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,Tajawal,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+  html[dir=rtl] body{font-family:Tajawal,Inter,sans-serif}
+  nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:rgba(13,20,25,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .links a{color:var(--muted);text-decoration:none;margin-inline-end:18px;font-size:15px}
+  nav .links a:hover{color:var(--accent)}
+  #lang{background:none;border:1px solid var(--accent);color:var(--text);border-radius:999px;padding:6px 16px;cursor:pointer;box-shadow:0 0 12px rgba(95,216,238,.3)}
+  section{max-width:900px;margin:0 auto;padding:60px 20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;margin-bottom:22px}
+  .hero{text-align:center;padding-top:40px}
+  .chart{display:flex;align-items:flex-end;justify-content:center;gap:14px;height:170px;margin:10px auto 34px;padding:24px;border-radius:24px;background:radial-gradient(circle at 80% 10%,rgba(95,216,238,.15),transparent 60%),var(--card);border:1px solid var(--line);max-width:340px}
+  .chart span{width:36px;border-radius:10px;background:linear-gradient(var(--accent),rgba(95,216,238,.15));box-shadow:0 0 16px rgba(95,216,238,.35);animation:grow 1.2s ease-out both}
+  @keyframes grow{from{height:0}}
+  h1{font-size:clamp(34px,8vw,56px);font-weight:800;line-height:1.15}
+  .role{color:var(--accent);font-size:22px;font-weight:700;margin:8px 0 14px}
+  .sub{color:var(--muted);max-width:560px;margin:0 auto 26px}
+  .btn{display:inline-block;border:1px solid var(--accent);color:var(--accent);padding:10px 26px;border-radius:999px;text-decoration:none;font-weight:600}
+  .btn:hover{background:var(--accent);color:var(--bg)}
+  h2{font-size:32px;margin-bottom:22px}
+  h3{font-size:20px;margin-bottom:10px}
+  p,li{color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .chip{border:1px solid var(--line);background:#1b2b33;border-radius:999px;padding:8px 18px;color:var(--text);font-size:15px}
+  .project .thumb{height:180px;border-radius:16px;margin:-8px -8px 20px;background:linear-gradient(135deg,#1c3a46,#0f2027);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;overflow:hidden}
+  .project .thumb img{width:100%;height:100%;object-fit:cover}
+  .project ul{padding-inline-start:20px;margin-bottom:16px}
+  .tools{color:var(--text);font-weight:600;margin-bottom:12px}
+  .contact a{color:var(--accent);text-decoration:none}
+  footer{text-align:center;color:var(--muted);padding:30px;font-size:14px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="links">
+    <a href="#home" data-i="navHome">Home</a>
+    <a href="#about" data-i="navAbout">About</a>
+    <a href="#projects" data-i="navProjects">Projects</a>
+    <a href="#contact" data-i="navContact">Contact</a>
+  </div>
+  <button id="lang">AR | EN</button>
+</nav>
+
+<section id="home" class="hero">
+  <div class="chart"><span style="height:45%"></span><span style="height:65%"></span><span style="height:90%"></span><span style="height:58%"></span><span style="height:78%"></span></div>
+  <h1 data-i="name">Hello, I'm Bashayer Alsaadi</h1>
+  <div class="role" data-i="role">Customer Experience Specialist | Data Analyst</div>
+  <p class="sub" data-i="tagline">I turn customer data into clear insights, and insights into practical solutions that improve the customer journey.</p>
+  <a class="btn" href="CV.pdf" download data-i="cv">Download CV</a>
+</section>
+
+<section id="about">
+  <h2 data-i="aboutTitle">About Me</h2>
+  <div class="card">
+    <h3 data-i="summaryTitle">Professional Summary</h3>
+    <p data-i="summary">Customer Experience Specialist in banking. I build dashboards, analyze NPS, CSAT and CES results, and work closely with business teams to turn customer insights into ideas that get implemented.</p>
+  </div>
+  <div class="card">
+    <h3 data-i="skillsTitle">Skills</h3>
+    <div class="chips">
+      <span class="chip" data-i="s1">Data Analysis</span>
+      <span class="chip" data-i="s2">Dashboard Design</span>
+      <span class="chip" data-i="s3">Customer Journey Mapping</span>
+      <span class="chip" data-i="s4">NPS / CSAT / CES</span>
+      <span class="chip" data-i="s5">Reporting</span>
+      <span class="chip">Excel</span>
+      <span class="chip">Power BI</span>
+    </div>
+  </div>
+  <div class="card">
+    <h3 data-i="certTitle">Certifications</h3>
+    <p data-i="cert1">Add your certificate here</p>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 data-i="projTitle">Projects</h2>
+
+  <div class="card project">
+    <div class="thumb">project1.png</div>
+    <h3 data-i="p1t">Customer Experience Dashboard</h3>
+    <ul>
+      <li data-i="p1a">Tracked NPS, CSAT and CES across products using sample data</li>
+      <li data-i="p1b">Highlighted the products with the lowest scores and the main pain points</li>
+      <li data-i="p1c">Turned the findings into clear recommendations</li>
+    </ul>
+    <div class="tools">Power BI · Excel</div>
+  </div>
+
+  <div class="card project">
+    <div class="thumb">project2.png</div>
+    <h3 data-i="p2t">Credit Card Customer Journey</h3>
+    <ul>
+      <li data-i="p2a">Mapped the full journey across branch and digital channels</li>
+      <li data-i="p2b">Identified friction points and proposed improvements</li>
+    </ul>
+    <div class="tools">Excel · Journey Mapping</div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 data-i="contactTitle">Contact</h2>
+  <div class="card contact">
+    <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/your-link" target="_blank">linkedin.com/in/your-link</a></p>
+  </div>
+</section>
+
+<footer>© 2026 Bashayer Alsaadi</footer>
+
+<script>
+const ar = {
+  navHome:"الرئيسية", navAbout:"عني", navProjects:"المشاريع", navContact:"تواصل",
+  name:"أهلاً، أنا بشاير السعدي", role:"أخصائية تجربة العملاء | محللة بيانات",
+  tagline:"أحوّل بيانات العملاء إلى رؤى واضحة، والرؤى إلى حلول عملية تحسّن رحلة العميل.",
+  cv:"تحميل السيرة الذاتية", aboutTitle:"عني", summaryTitle:"نبذة مهنية",
+  summary:"أخصائية تجربة عملاء في القطاع البنكي. أبني الداشبوردات، وأحلل نتائج NPS وCSAT وCES، وأعمل مع فرق الأعمال لتحويل رؤى العملاء إلى أفكار تُطبَّق.",
+  skillsTitle:"المهارات", s1:"تحليل البيانات", s2:"تصميم الداشبوردات", s3:"رسم رحلة العميل", s4:"NPS / CSAT / CES", s5:"إعداد التقارير",
+  certTitle:"الشهادات", cert1:"أضيفي شهادتك هنا", projTitle:"المشاريع",
+  p1t:"داشبورد تجربة العملاء", p1a:"تتبّع مؤشرات NPS وCSAT وCES لكل منتج باستخدام بيانات تجريبية", p1b:"إبراز المنتجات الأقل تقييماً وأهم نقاط الألم", p1c:"تحويل النتائج إلى توصيات واضحة",
+  p2t:"رحلة عميل البطاقات الائتمانية", p2a:"رسم الرحلة كاملة في الفرع والقنوات الرقمية", p2b:"تحديد نقاط الاحتكاك واقتراح تحسينات",
+  contactTitle:"تواصل"
+};
+const en = {};
+document.querySelectorAll("[data-i]").forEach(el => en[el.dataset.i] = el.textContent);
+let isAr = false;
+document.getElementById("lang").onclick = () => {
+  isAr = !isAr;
+  document.documentElement.lang = isAr ? "ar" : "en";
+  document.documentElement.dir = isAr ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i]").forEach(el => el.textContent = (isAr ? ar : en)[el.dataset.i]);
+};
+</script>
+</body>
+</html>
